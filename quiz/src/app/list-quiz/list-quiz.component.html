@@ -1,0 +1,9 @@
+<div>
+  Select Quiz:
+</div>
+<ul>
+  <li *ngFor='let quiz of quizzes'>
+    <app-quiz [routerLink]='["/quiz", quiz.id ]'> {{ quiz.name }} </app-quiz>
+  </li>
+</ul>
+<app-add-quiz></app-add-quiz>
