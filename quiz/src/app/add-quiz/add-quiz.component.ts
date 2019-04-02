@@ -15,12 +15,14 @@ export class AddQuizComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   addQuiz(){
     console.log(this.quiz);
-    this.quizService.
-
+    this.quizService.addQuiz(this.quiz).subscribe(res => {
+      console.log('res:' + res);
+    })
   }
 
 }

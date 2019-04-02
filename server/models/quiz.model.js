@@ -5,10 +5,10 @@ const quizSchema = new Schema({
     title: String,
     questions: [
         {
-            qTExt: String,
+            question: String,
             answers: [
                 {
-                    aTExt: String,
+                    answer: String,
                     isTrue: Boolean
                 }
             ]

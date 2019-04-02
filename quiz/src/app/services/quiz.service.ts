@@ -15,4 +15,10 @@ export class QuizService {
 
   return this.httpClient.post<object>(environment.serverUrl + 'quiz', quiz);    
   }
+
+  getQuizes(): Observable<QuizModel[]>{
+
+    return this.httpClient.get<QuizModel[]>(environment.serverUrl + 'quiz');
+  }
+
 }

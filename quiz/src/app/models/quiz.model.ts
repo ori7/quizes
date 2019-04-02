@@ -1,4 +1,22 @@
 export interface QuizModel {
     title: string,
-    questions: string[],
+    questions: [
+        {
+            question: string,
+            answers: [
+                {
+                    answer: string,
+                    isTrue: boolean
+                },
+                {
+                    answer: string,
+                    isTrue: boolean
+                },
+                {
+                    answer: string,
+                    isTrue: boolean
+                }
+            ]
+        }
+    ]
 }

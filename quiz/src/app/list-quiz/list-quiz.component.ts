@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizModel } from '../models/quiz.model';
-import { HttpClient } from '@angular/common/http';
+import { QuizService } from '../services/quiz.service';
 
 @Component({
   selector: 'app-list-quiz',
@@ -9,14 +9,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ListQuizComponent implements OnInit {
 
-  quizzes: QuizModel;
+  quizzes: QuizModel[];
 
-  constructor( private httpClient: HttpClient ) {
-    this.quizzes=<QuizModel>{};
+  constructor( private quizService: QuizService ) {
    }
 
   ngOnInit() {
-    this.httpClient.get.
+    this.quizService.getQuizes().subscribe(res => {
+      this.quizzes = res;
+    })
   }
 
 

@@ -1,13 +1,55 @@
-<form class="col-4" #addForm="ngForm">
+<br>
+<form class="col-7" #addForm="ngForm">
   <h3>Add Quiz:</h3>
   <div class="form-group">
     <label for="name">Title:</label>
-    <input [(ngModel)]="quiz.title" type="text" class="form-control" id="title" placeholder="Enter title" name="title" required>
+    <input [(ngModel)]="quiz.title" type="text" class="form-control" id="title" placeholder="Enter title" name="title"
+      required>
   </div>
   <div class="form-group">
-    <label for="questions">Questions:</label>
-    <textarea [(ngModel)]="quiz.questions" type="text" rows="4" class="form-control" id="questions" placeholder="Enter questions" name="questions" required></textarea>
+    <label for="question1">Question 1:</label>
+    <textarea [(ngModel)]="quiz.questions[0].question" type="text" class="form-control" id="question1"
+      placeholder="Enter question" name="question" required></textarea>
   </div>
-  <button [disabled]="addForm.form.invalid" type="submit" class="btn btn-primary" (click)='addQuiz()'>Add Quiz</button>
-  <br><br>
+  <div class="form-group">
+    <label for="answer1">Answer 1:</label>
+    <textarea [(ngModel)]="quiz.questions[0].answers[0].answer" type="text" class="form-control" id="answer1"
+      placeholder="Enter answer" name="answer1" required></textarea>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input [(ngModel)]="quiz.questions[0].answers[0].isTrue" type="radio" class="form-check-input" id="isTrue1"
+        name="isTrue" required>
+      <label for="isTrue1" class="form-check-label">Is True</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="answer2">Answer 2:</label>
+    <textarea [(ngModel)]="quiz.questions[0].answers[1].answer" type="text" class="form-control" id="answer2"
+      placeholder="Enter answer" name="answer2" required></textarea>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input [(ngModel)]="quiz.questions[0].answers[1].isTrue" type="radio" class="form-check-input" id="isTrue2"
+        name="isTrue" required>
+      <label for="isTrue2" class="form-check-label">Is True</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="answer3">Answer 3:</label>
+    <textarea [(ngModel)]="quiz.questions[0].answers[2].answer" type="text" rows="2" class="form-control" id="answer3"
+      placeholder="Enter answer" name="answer3" required></textarea>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input [(ngModel)]="quiz.questions[0].answers[2].isTrue" type="radio" class="form-check-input" id="isTrue3"
+        name="isTrue" required>
+      <label for="isTrue3" class="form-check-label">Is True</label>
+    </div>
+  </div>
+  <button [disabled]="addForm.form.invalid" type="submit" class="btn btn-primary" (click)='addQuestion()'>Add question</button>
+  <br>
+  <div class="form-group text-right">
+    <button [disabled]="addForm.form.invalid" type="submit" class="btn btn-primary" (click)='addQuiz()'>Send Quiz</button>
+  </div>
 </form>

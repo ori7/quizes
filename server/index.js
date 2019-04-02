@@ -29,7 +29,7 @@ app.get('/quiz', function (req, res) {
 
 app.post('/quiz', function (req, res) {
     var newQuiz = new Quiz();
-    newQuiz.qTitle = 'PHP'; //req.body.name;
+    newQuiz.title = 'PHP'; //req.body.name;
     newQuiz.questions = [];
 
     newQuiz.save(function (err, quiz) {
@@ -49,18 +49,18 @@ app.get('/test', function (req, res) {
     newQuiz.title = 'javascript'; //req.body.name;
     newQuiz.questions = [
         {
-            qTExt: "q1",
+            question: "q1",
             answers: [
                 {
-                    aTExt: "answer1",
+                    answer: "answer1",
                     isTrue: false
                 },
                 {
-                    aTExt: "answer2",
+                    answer: "answer2",
                     isTrue: false
                 },
                 {
-                    aTExt: "answer3",
+                    answer: "answer3",
                     isTrue: true
                 }
             ]
