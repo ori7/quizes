@@ -1,8 +1,13 @@
 var app = require('express')(),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    port = 3000,
+    cors = require('cors');
+port = 3000,
     Quiz = require('./models/quiz.model');
+jwt = require('jsonwebtoken');
+jwtKey = 'sdfj&*dfgdlga#$df3#@$84bf45';
+
+app.use(cors());
 
 var db = 'mongodb://127.0.0.1/north';
 mongoose.connect(db, { useMongoClient: true });
@@ -17,6 +22,25 @@ con.once('open', function () {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(function (req, res, next) {
+
+    if (req.path === '/login')
+        next();
+
+    else if (!req.headers.authorization) {
+        return res.status(403).json({ error: 'No credentials sent!' });
+    }
+    else {
+        try {
+            jwt.verify(req.headers.authorization.replace('Bearer ', ''), jwtKey);
+            next();
+        }
+        catch (err) {
+            return res.status(403).json({ error: 'Bad credentials' });
+        }
+    }
+})
+
 app.get('/quiz', function (req, res) {
     Quiz.find({}).exec(function (error, result) {
         if (error) {
@@ -24,8 +48,8 @@ app.get('/quiz', function (req, res) {
         }
         else
             res.send(result);
-    })
-})
+    });
+});
 
 app.post('/quiz', function (req, res) {
     var newQuiz = new Quiz();
@@ -40,8 +64,19 @@ app.post('/quiz', function (req, res) {
             console.log(quiz);
             res.json(quiz);
         }
-    })
-})
+    });
+});
+
+app.post('/login', function (req, res) {
+
+    console.log(req.body);
+    if (req.body.username === 'user' && req.body.password === 'p') {
+        const token = jwt.sign({ username: 'user' }, jwtKey);
+        res.json(token);
+    } else {
+        res.status(401).json('no authorized');
+    }
+});
 
 /*
 app.get('/test', function (req, res) {
