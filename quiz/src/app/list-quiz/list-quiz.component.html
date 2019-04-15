@@ -3,6 +3,6 @@
 </div>
 <ul>
   <li *ngFor='let quiz of quizzes'>
-    <app-quiz [routerLink]='["/quiz", quiz.id ]'> {{ quiz.name }} </app-quiz>
+    <a [routerLink]='["/quiz", quiz._id ]'> {{ quiz.title }} </a>
   </li>
 </ul>

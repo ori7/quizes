@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
   login(){
 
     this.loginService.login(this.user).subscribe(res => {
-      console.log(res);
       if (res) {
         this.router.navigate(['/listQuiz']);
       } else {
-        this.loginError = "Error with login"
+        this.user.username = this.user.password = '';
+        this.loginError = "Error with login";
       }
     });
   }

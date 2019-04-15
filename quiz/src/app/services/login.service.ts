@@ -21,7 +21,6 @@ export class LoginService {
 
     return this.httpClient.post(environment.serverUrl + 'login', user).pipe(
       catchError(errorRes => {
-        console.log(errorRes);
         this.isLoged.next(false);
         return of(undefined);
       }),
